@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products</title>
+</head>
+<body>
+<h1>Products</h1>
+
+<!-- Eğer petFoods listesi boşsa veya null ise gösterilecek -->
+<div th:if="${#lists.isEmpty(petFoods)}">
+    <p>No products available at the moment.</p>
+</div>
+
+<!-- Eğer petFoods listesi doluysa gösterilecek -->
+<ul th:if="${!#lists.isEmpty(petFoods)}">
+    <li th:each="petFood : ${petFoods}">
+        <!-- PetFood ismi ve fiyatı -->
+        <span th:text="${petFood.name}">Product Name</span> -
+        <span th:text="${petFood.price}">Product Price</span>
+
+        <!-- Sepete ekleme formu -->
+        <form th:action="@{/cart/add}" method="post">
+            <input type="hidden" th:value="${petFood.id}" name="petFoodId"/>
+            <input type="number" name="quantity" value="1" min="1"/>
+            <button type="submit">Add to Cart</button>
+        </form>
+    </li>
+</ul>
+<a href="/cart">Go to Cart</a>
+</body>
+</html>
