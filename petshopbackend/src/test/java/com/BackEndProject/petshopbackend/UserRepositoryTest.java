@@ -14,17 +14,16 @@ import static org.assertj.core.api.BDDAssertions.then;
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
+
     @Autowired
     private PetRepository petRepository;
 
     @Test
     void getPetByName(){
         //given
-       Pet savedPet=petRepository.save(new Pet(null,"Max"));
-
+        Pet savedPet=petRepository.save(new Pet(null,"Max"));
         //when
         Pet pet=petRepository.findByPet("Max");
-
         //then
         then(pet.getId()).isNotNull();
         then(pet.getPet()).isEqualTo(savedPet.getPet());
