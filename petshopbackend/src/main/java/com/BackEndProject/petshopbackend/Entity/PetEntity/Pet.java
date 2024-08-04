@@ -2,16 +2,16 @@ package com.BackEndProject.petshopbackend.Entity.PetEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
 @Table(name = "pets")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
