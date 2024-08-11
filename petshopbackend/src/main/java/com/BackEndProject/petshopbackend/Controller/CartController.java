@@ -28,9 +28,9 @@ public class CartController {
         return "petfood";
     }
     @PostMapping("/cart/add")
-    public String addPetFoodToCart(@RequestParam Long petFoodId,@RequestParam int quantity){
-        cartService.addPetFoodToCart(petFoodId,quantity);
-        return "redirect:/cart";
+    public String addPetFoodToCart(@RequestParam Long foodId,@RequestParam int quantity){
+        cartService.addPetFoodToCart(foodId,quantity);
+        return "redirect:/petFood";
     }
     @PostMapping("/cart/remove")
     public String removePetFoodFromCart(@RequestParam Long cartId){
