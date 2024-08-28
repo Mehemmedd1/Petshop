@@ -5,16 +5,14 @@ import com.BackEndProject.petshopbackend.Entity.UserEntity.AppUser;
 import com.BackEndProject.petshopbackend.Repository.UserRepository;
 import com.BackEndProject.petshopbackend.Service.UserService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 
 @Controller
@@ -65,6 +63,10 @@ public class AccountController {
             newUser.setCreatedAt(new Date());
             newUser.setPassword(bCryptEncoder.encode(registerDto.getPassword()));
 
+            String randomCode= RandomString.make(64);
+            newUser.setVerificationCode(randomCode);
+
+
             repo.save(newUser);
 
             model.addAttribute("registerDto",new RegisterDto());
@@ -80,6 +82,7 @@ public class AccountController {
 
         return "register";
     }
+
     @GetMapping("/profile")
     public String showProfile(Model model) {
         AppUser user = userService.getCurrentUser(); // Make sure this method is correctly fetching the user

@@ -31,7 +31,7 @@ public class AppUser {
 
     private Date createdAt;
 
-    @Column(name = "verification_code",updatable = false)
+    @Column(name = "verification_code",updatable = false,length = 64)
     private String verificationCode;
     private boolean enabled;
 
