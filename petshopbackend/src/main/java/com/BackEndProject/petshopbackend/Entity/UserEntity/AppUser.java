@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
@@ -30,6 +30,10 @@ public class AppUser {
     private String password;
 
     private Date createdAt;
+
+    @Column(name = "verification_code",updatable = false)
+    private String verificationCode;
+    private boolean enabled;
 
 
 }
