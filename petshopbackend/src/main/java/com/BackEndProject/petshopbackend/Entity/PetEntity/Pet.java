@@ -18,6 +18,8 @@ public class Pet {
     private Long id;
     @Column(name = "pet_name")
     private String pet;
+    private String type;
+    private String age;
 
 
 

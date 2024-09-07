@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pets List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+
+        .pet-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pet-card h3 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .pet-card p {
+            margin: 0;
+            color: #555;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+        .nav-link {
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <li class="nav-item" style="list-style-type: none; padding: 0; margin: 0;">
+        <a class="nav-link text-dark" href="/">Home</a>
+    </li>
+
+
+    <h1 class="text-center">All Pets</h1>
+
+
+    <div th:each="pet : ${pets}" class="pet-card">
+        <h3 th:text="${pet.pet}">Pet Name</h3>
+        <p><strong>Type:</strong> <span th:text="${pet.type}">Pet Type</span></p>
+        <p><strong>Age:</strong> <span th:text="${pet.age}">Pet Age</span></p>
+    </div>
+
+</div>
+</body>
+</html>

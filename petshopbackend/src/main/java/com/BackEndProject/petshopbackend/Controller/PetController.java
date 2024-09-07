@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/pet")
 public class PetController {
     @Autowired
@@ -24,10 +26,9 @@ public class PetController {
 
     }
     @GetMapping("/getAllPets")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Pet>> getAllPets(){
-        List<Pet> allpets=petService.getAllPets();
-        return ResponseEntity.ok(allpets);
+    public String getAllPets(Model model){
+        model.addAttribute("pets",petService.getAllPets());
+        return "pets";
     }
     @GetMapping("/{id}")
     public ResponseEntity<List<Pet>> getPetById(@PathVariable Long id){
@@ -37,7 +38,7 @@ public class PetController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePet(@PathVariable Long id){
         petService.deletePet(id);
-        return ResponseEntity.ok("Pet not found this id: "+id);
+        return ResponseEntity.ok("Pet deleted successfully");
 
     }
     @PutMapping("/{id}")
