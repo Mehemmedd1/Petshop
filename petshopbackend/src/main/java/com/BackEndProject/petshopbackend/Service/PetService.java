@@ -2,8 +2,6 @@ package com.BackEndProject.petshopbackend.Service;
 
 import com.BackEndProject.petshopbackend.Entity.PetEntity.Pet;
 import com.BackEndProject.petshopbackend.Repository.PetRepository;
-import org.springframework.http.HttpMessage;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
